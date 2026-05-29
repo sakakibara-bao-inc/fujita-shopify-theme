@@ -1,0 +1,55 @@
+  <!-- c-drawer -->
+  <div class="c-drawer">
+    <div class="c-drawer__inner">
+      <div class="c-drawer__body l-container">
+
+        <nav class="c-drawer__nav">
+          <div class="c-drawer__journal c-journal-logo"><a href="/fujita/journal/">
+            ふじた<br>ジャーナル
+            <i class="c-icon c-icon--chevron-right"><svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg></i>
+          </a></div>
+          
+          <ul class="c-drawer__mainnav">
+            <li><a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} class="is-current"{% endif %}>HOME</a></li>
+            <li><a href="{{ routes.all_products_collection_url }}"{% if request.page_type == 'collection' or request.page_type == 'product' %} class="is-current"{% endif %}>ONLINESHOP</a>
+
+              <div class="c-drawer__shopnav" aria-label="オンラインショップメニュー">
+                <ul class="h-shopnav__primary h-shopnav__primary--drawer">
+                  {% for link in menus['shop-nav-primary'].links %}
+                    {% assign nav_collection = link.object %}
+
+                    <li><a href="{{ link.url }}" data-english-title="{{ nav_collection.metafields.custom.en_title }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+
+                <ul class="c-tag-list c-tag-list--button c-tag-list--button-lg">
+                  <li><a href="{{ routes.all_products_collection_url }}"{% if request.path == routes.all_products_collection_url %} class="is-current"{% endif %}>すべて</a></li>
+
+                  {% for link in menus['shop-nav-secondary'].links %}
+                    {% assign nav_collection = link.object %}
+
+                    {% if nav_collection.products_count > 0 %}
+                      <li><a href="{{ link.url }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+
+                <div class="c-drawer__shopnav-guide">
+                  <a href="{{ pages['guide'].url }}" class="c-button c-button--sm c-button--icon-left">
+                    <span class="c-icon c-icon--information">
+                      <svg aria-hidden="true"><use href="#icon-information"></use></svg>
+                    </span>
+                    ご利用ガイド
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="{{ pages.about.url }}"{% if request.path == pages.about.url %} class="is-current"{% endif %}>ABOUT</a></li>
+          </ul>
+        </nav>
+      </div>    
+    </div>
+
+    <!-- <div class="c-drawer__bcg"></div> -->
+  </div>
+  <!-- // c-drawer -->

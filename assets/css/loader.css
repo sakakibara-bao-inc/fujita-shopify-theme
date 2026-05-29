@@ -1,0 +1,92 @@
+.c-splash {
+	inline-size: 100vw;
+	block-size: 100vh;
+	position: fixed;
+	inset-inline-start: 0;
+	inset-block-start: 0;
+	z-index: 9000;
+	visibility: hidden;
+}
+body._show-splash .c-splash {
+	visibility: visible;
+}
+body._allloaded .c-splash {
+	opacity: 0;
+	visibility: hidden;
+	transition: visibility .4s, opacity .3s .1s;
+}
+
+
+.c-splash__text {
+	--base-delay: 0.5s;
+  --step-delay: 0.05s;
+  --duration: 2s; 
+
+	color: #e50012;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.4;
+	white-space: nowrap;
+	position: absolute;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.c-splash__text span {
+  display: inline-block;
+	transform: translateY(100%);
+  opacity: 0;
+  animation: splashBounce var(--duration) ease-in-out infinite;
+}
+
+/* 各文字にディレイをずらす */
+.c-splash__text span:nth-child(1) { animation-delay: calc(var(--base-delay) + 0 * var(--step-delay)); }
+.c-splash__text span:nth-child(2) { animation-delay: calc(var(--base-delay) + 1 * var(--step-delay)); }
+.c-splash__text span:nth-child(3) { animation-delay: calc(var(--base-delay) + 2 * var(--step-delay)); }
+.c-splash__text span:nth-child(4) { animation-delay: calc(var(--base-delay) + 3 * var(--step-delay)); }
+.c-splash__text span:nth-child(5) { animation-delay: calc(var(--base-delay) + 4 * var(--step-delay)); }
+.c-splash__text span:nth-child(6) { animation-delay: calc(var(--base-delay) + 5 * var(--step-delay)); }
+.c-splash__text span:nth-child(7) { animation-delay: calc(var(--base-delay) + 6 * var(--step-delay)); }
+
+@keyframes splashBounce {
+  0%   { transform: translateY(50%); opacity: 0; }
+  7%  { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(-50%); opacity: 0; }
+  100% { transform: translateY(-50%); opacity: 0; }
+}
+
+
+.c-splash__loader {
+	width: clamp(80px, 12vw, 150px);
+	aspect-ratio: 1;
+	position: absolute;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	transform: translate(-50%,-50%) rotate(0);
+	animation: c-splash-rotate 2s ease-in-out infinite;
+}
+
+@keyframes c-splash-rotate {
+	0% { transform: translate(-50%,-50%) rotate(0); }
+	100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+.c-splash__ring {
+	stroke: #e50012;
+	stroke-width: 1;
+	stroke-linecap: round;
+	stroke-dasharray: 1.02;
+	stroke-dashoffset: 1.02;
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
+	animation: c-splash-Loop 2s ease-in-out infinite;
+}
+
+@keyframes c-splash-Loop {
+	0%,30% { stroke-dashoffset: 1.02; }
+	60% { stroke-dashoffset: 0; }
+	100% { stroke-dashoffset: -1; }
+}
