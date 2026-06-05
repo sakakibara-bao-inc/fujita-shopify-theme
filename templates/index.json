@@ -1,7 +1,19 @@
 {
   "sections": {
-    "test_hero": {
-      "type": "test-hero"
+    "home_journal_list": {
+      "type": "home-journal-list"
+    },
+    "home_product": {
+      "type": "home-product"
+    },
+    "home_image_slider": {
+      "type": "home-image-slider"
+    },
+    "home_about": {
+      "type": "home-about"
+    },
+    "home_shop_info": {
+      "type": "home-shop"
     },
     "image_banner": {
       "type": "image-banner",
@@ -72,7 +84,11 @@
     }
   },
   "order": [
-    "test_hero",
+    "home_journal_list",
+    "home_product",
+    "home_image_slider",
+    "home_about",
+    "home_shop_info",
     "image_banner",
     "featured_collection"
   ]
