@@ -1,24 +1,31 @@
-    <div class="l-separator l-section-gap--sm"><span></span></div>
+  <div class="l-separator l-section-gap--sm"><span></span></div>
 
-    <!-- f-footer -->
-    <footer class="f-footer l-container l-section-gap--sm">
-      <div class="f-sns-link">
-        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <span class="c-icon"><svg aria-hidden="true"><use href="#icon-instagram"></use></svg></span>
-        </a>
-      </div>
+  <!-- f-footer -->
+  <footer class="f-footer l-container l-section-gap--sm">
+    <div class="f-sns-link">
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <span class="c-icon"><svg aria-hidden="true"><use href="#icon-instagram"></use></svg></span>
+      </a>
+    </div>
 
-      <nav class="f-nav" aria-label="フッターナビゲーション">
-        <ul>
-          {% for link in menus['footer-nav'].links %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
+    <nav class="f-nav" aria-label="フッターナビゲーション">
+      <ul>
+        {% for link in menus['footer-nav'].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
 
-      <p class="f-copyright">© ふじたしょうてん</p>
-    </footer>
-    <!-- // f-footer -->
+    <p class="f-copyright">© ふじたしょうてん</p>
+  </footer>
+  <!-- // f-footer -->
 
-  </div>
-  <!-- //l-wrapper -->
+</div>
+<!-- //l-wrapper -->
+
+
+{% schema %}
+{
+  "name": "Footer"
+}
+{% endschema %}

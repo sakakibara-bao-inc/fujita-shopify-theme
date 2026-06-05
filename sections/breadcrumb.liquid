@@ -1,0 +1,48 @@
+<nav class="c-breadcrumb l-container l-section-gap" aria-label="パンくずリスト">
+  <ol class="c-breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li class="c-breadcrumb__item"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem">
+      <a href="{{ routes.root_url }}" itemprop="item">
+        <span itemprop="name">HOME</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+
+    <li class="c-breadcrumb__item"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem">
+      <a href="{{ routes.all_products_collection_url }}" itemprop="item">
+        <span itemprop="name">オンラインショップ</span>
+      </a>
+      <meta itemprop="position" content="2">
+    </li>
+
+    <li class="c-breadcrumb__item c-breadcrumb__item--current"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem">
+      <span itemprop="name" aria-current="page">
+        {% case template.name %}
+          {% when 'collection' %}
+            {{ collection.title }}
+          {% when 'product' %}
+            {{ product.title }}
+          {% when 'page' %}
+            {{ page.title }}
+          {% else %}
+            {{ page_title }}
+        {% endcase %}
+      </span>
+      <meta itemprop="position" content="3">
+    </li>
+  </ol>
+</nav>
+
+{% schema %}
+{
+  "name": "Breadcrumb"
+}
+{% endschema %}

@@ -1,85 +1,92 @@
 
-  <!-- h-header -->
-  <div class="h-header__wrapper">
-    <header class="h-header{% if request.page_type == 'index' %} h-header--top{% endif %}">
-      {% if request.page_type == 'index' %}
-        <h1 class="h-logo">
-          <a href="{{ routes.root_url }}" class="c-logo">
-            <span class="u-visually-hidden">{{ shop.name }}</span>
-          </a>
-        </h1>
-      {% else %}
-        <div class="h-logo">
-          <a href="{{ routes.root_url }}" class="c-logo">
-            <span class="u-visually-hidden">{{ shop.name }}</span>
-          </a>
-        </div>
-      {% endif %}
-
-      <nav class="h-nav">
-        <ul class="h-mainnav" aria-label="メインメニュー">
-          <li><a href="{{ routes.all_products_collection_url }}" class="h-mainnav__link h-mainnav__link--shop{% if request.page_type == 'collection' or request.page_type == 'product' %} is-current{% endif %}">ONLINESHOP</a></li>
-          <li><a href="{{ pages.about.url }}" class="h-mainnav__link{% if request.path == pages.about.url %} is-current{% endif %}">ABOUT</a></li>
-        </ul>
-
-        <ul class="h-subnav" aria-label="会員メニュー">
-          <li><a href="{{ routes.account_url }}" aria-label="マイページへ"><span class="c-icon c-icon--mypage"><svg aria-hidden="true"><use href="#icon-mypage"></use></svg></span></a></li>
-          <li><a href="{{ routes.cart_url }}" aria-label="カートを見る">
-            <span class="c-cart-button">
-              <span class="c-icon c-icon--cart"><svg aria-hidden="true"><use href="#icon-cart"></use></svg></span>
-              {% if cart.item_count > 0 %}
-                <span class="c-cart-button__count">
-                  {{ cart.item_count }}
-                </span>
-              {% endif %}
-            </span>
-          </a></li>
-
-          <li>
-            <button class="c-drawer__trigger"><i></i></button>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="h-journal">
-        <div class="c-journal-logo c-journal-logo--header"><a href="/fujita/journal/">
-          ふじた<br>ジャーナル
-          <i class="c-icon c-icon--chevron-right"><svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg></i>
-        </a></div>
+<!-- h-header -->
+<div class="h-header__wrapper">
+  <header class="h-header{% if request.page_type == 'index' %} h-header--top{% endif %}">
+    {% if request.page_type == 'index' %}
+      <h1 class="h-logo">
+        <a href="{{ routes.root_url }}" class="c-logo">
+          <span class="u-visually-hidden">{{ shop.name }}</span>
+        </a>
+      </h1>
+    {% else %}
+      <div class="h-logo">
+        <a href="{{ routes.root_url }}" class="c-logo">
+          <span class="u-visually-hidden">{{ shop.name }}</span>
+        </a>
       </div>
-    </header>
+    {% endif %}
 
-    <nav class="h-shopnav" aria-label="オンラインショップメニュー">
-      <div class="h-shopnav__inner l-container">
-        <ul class="h-shopnav__primary">
-          {% for link in menus['shop-nav-primary'].links %}
-            {% assign nav_collection = link.object %}
+    <nav class="h-nav">
+      <ul class="h-mainnav" aria-label="メインメニュー">
+        <li><a href="{{ routes.all_products_collection_url }}" class="h-mainnav__link h-mainnav__link--shop{% if request.page_type == 'collection' or request.page_type == 'product' %} is-current{% endif %}">ONLINESHOP</a></li>
+        <li><a href="{{ pages.about.url }}" class="h-mainnav__link{% if request.path == pages.about.url %} is-current{% endif %}">ABOUT</a></li>
+      </ul>
 
-            <li><a href="{{ link.url }}" data-english-title="{{ nav_collection.metafields.custom.en_title }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-
-        <ul class="h-shopnav__secondary c-tag-list c-tag-list--button c-tag-list--button-lg">
-          <li><a href="{{ routes.all_products_collection_url }}"{% if request.path == routes.all_products_collection_url %} class="is-current"{% endif %}>すべて</a></li>
-
-          {% for link in menus['shop-nav-secondary'].links %}
-            {% assign nav_collection = link.object %}
-
-            {% if nav_collection.products_count > 0 %}
-              <li><a href="{{ link.url }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
+      <ul class="h-subnav" aria-label="会員メニュー">
+        <li><a href="{{ routes.account_url }}" aria-label="マイページへ"><span class="c-icon c-icon--mypage"><svg aria-hidden="true"><use href="#icon-mypage"></use></svg></span></a></li>
+        <li><a href="{{ routes.cart_url }}" aria-label="カートを見る">
+          <span class="c-cart-button">
+            <span class="c-icon c-icon--cart"><svg aria-hidden="true"><use href="#icon-cart"></use></svg></span>
+            {% if cart.item_count > 0 %}
+              <span class="c-cart-button__count">
+                {{ cart.item_count }}
+              </span>
             {% endif %}
-          {% endfor %}
-        </ul>
+          </span>
+        </a></li>
 
-        <div class="h-shopnav__guide">
-          <a href="{{ pages['guide'].url }}" class="c-button c-button--sm c-button--icon-left">
-            <span class="c-icon c-icon--information">
-              <svg aria-hidden="true"><use href="#icon-information"></use></svg>
-            </span>
-            ご利用ガイド
-          </a>
-        </div>
-      </div>
+        <li>
+          <button class="c-drawer__trigger"><i></i></button>
+        </li>
+      </ul>
     </nav>
-  </div>
-  <!-- // h-header -->
+
+    <div class="h-journal">
+      <div class="c-journal-logo c-journal-logo--header"><a href="/fujita/journal/">
+        ふじた<br>ジャーナル
+        <i class="c-icon c-icon--chevron-right"><svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg></i>
+      </a></div>
+    </div>
+  </header>
+
+  <nav class="h-shopnav" aria-label="オンラインショップメニュー">
+    <div class="h-shopnav__inner l-container">
+      <ul class="h-shopnav__primary">
+        {% for link in menus['shop-nav-primary'].links %}
+          {% assign nav_collection = link.object %}
+
+          <li><a href="{{ link.url }}" data-english-title="{{ nav_collection.metafields.custom.en_title }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <ul class="h-shopnav__secondary c-tag-list c-tag-list--button c-tag-list--button-lg">
+        <li><a href="{{ routes.all_products_collection_url }}"{% if request.path == routes.all_products_collection_url %} class="is-current"{% endif %}>すべて</a></li>
+
+        {% for link in menus['shop-nav-secondary'].links %}
+          {% assign nav_collection = link.object %}
+
+          {% if nav_collection.products_count > 0 %}
+            <li><a href="{{ link.url }}"{% if collection.handle == nav_collection.handle %} class="is-current"{% endif %}>{{ link.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      <div class="h-shopnav__guide">
+        <a href="{{ pages['guide'].url }}" class="c-button c-button--sm c-button--icon-left">
+          <span class="c-icon c-icon--information">
+            <svg aria-hidden="true"><use href="#icon-information"></use></svg>
+          </span>
+          ご利用ガイド
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- // h-header -->
+
+
+{% schema %}
+{
+  "name": "Header"
+}
+{% endschema %}

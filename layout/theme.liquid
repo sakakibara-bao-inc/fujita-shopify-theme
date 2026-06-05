@@ -275,11 +275,15 @@
     {% section 'header' %}
 
     <!-- l-wrapper -->
-    <div class="l-wrapper l-stack">
+    <div class="l-wrapper">
 
-      <main id="MainContent" class="l-stack">
+      <main id="MainContent">
         {{ content_for_layout }}
       </main>
+
+      {% unless template.name == 'index' %}
+        {% section 'breadcrumb' %}
+      {% endunless %}
 
       {% section 'footer' %}
 
