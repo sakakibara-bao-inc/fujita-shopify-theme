@@ -1,0 +1,95 @@
+  {% assign is_primary_collection = false %}
+
+  {% for link in menus['shop-nav-primary'].links %}
+    {% if link.object and collection.handle == link.object.handle %}
+      {% assign is_primary_collection = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% paginate collection.products by 1 %}
+  <!-- l-container -->
+  <section class="product-list l-container">
+    <div class="c-card-list c-card-list--grid c-card-list--cols-3">
+      {% if is_primary_collection %}
+      <header class="c-card-list__header c-card-list__header--full">
+        <div class="c-card-list__title">
+          <h1 class="c-category-title" data-english-title="{{ collection.metafields.custom.en_title }}">
+            <span>{{ collection.title }}</span>
+          </h1>
+        </div>
+        <div class="c-card-list__description">{{ collection.description }}</div>
+      </header>
+      {% else %}
+      <header class="c-card-list__header c-card-list__header--simple">
+        <div class="c-card-list__title">
+          <h1 class="c-category-title">
+            <span>
+              {% if collection.handle == 'all' %}
+                すべての商品
+              {% else %}
+                {{ collection.title }}
+              {% endif %}</span>
+          </h1>
+        </div>
+      </header>
+      {% endif %}
+
+      <ul class="c-card-list__list">
+        {% for product in collection.products %}
+          <li class="c-card-list__item">
+            {% render 'product-card', product: product %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <!-- // l-container -->
+
+
+  <div class="l-separator l-section-gap"><span></span></div>
+
+  
+  <!-- l-container -->
+  <nav class="c-pager l-container l-section-gap--sm" aria-label="ページネーション">
+    <ul class="c-pager__list">
+      {% for part in paginate.parts %}
+        <li class="c-pager__item">
+          {% if part.is_link %}
+            <a href="{{ part.url }}">
+              {{ part.title }}
+            </a>
+          {% else %}
+            {% if part.title == '&hellip;' %}
+              <i aria-hidden="true">…</i>
+            {% else %}
+              <span aria-current="page">
+                {{ part.title }}
+              </span>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if paginate.previous %}
+    <div class="c-pager__link c-pager__link--prev"><a href="{{ paginate.previous.url }}" class="c-button c-button--xs" rel="prev">
+      <span class="c-icon c-icon--chevron-left">
+        <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+      </span>
+      PREV
+    </a></div>
+    {% endif %}
+
+    {% if paginate.next %}
+    <div class="c-pager__link c-pager__link--next"><a href="{{ paginate.next.url }}" class="c-button c-button--xs" rel="next">
+      NEXT
+      <span class="c-icon c-icon--chevron-right">
+        <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+      </span>
+    </a></div>
+    {% endif %}
+  </nav>
+  <!-- // l-container -->
+
+  {% endpaginate %}

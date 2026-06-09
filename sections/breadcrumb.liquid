@@ -27,7 +27,11 @@
       <span itemprop="name" aria-current="page">
         {% case template.name %}
           {% when 'collection' %}
-            {{ collection.title }}
+             {% if collection.handle == 'all' %}
+              すべての商品
+            {% else %}
+              {{ collection.title }}
+            {% endif %}
           {% when 'product' %}
             {{ product.title }}
           {% when 'page' %}
