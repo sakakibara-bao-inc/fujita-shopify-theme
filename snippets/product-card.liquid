@@ -1,0 +1,27 @@
+<a href="{{ product.url }}" class="c-product-card">
+  <figure>
+    <span class="c-product-card__image c-hover-image--frame">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          loading="lazy"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+        >
+      {% endif %}
+    </span>
+
+    <figcaption class="c-product-card__body">
+      <h4 class="c-product-card__name">{{ product.title }}</h4>
+
+      <p class="c-product-card__price">
+        {% if product.price_varies %}
+          {{ product.price_min | money }}〜{{ product.price_max | money }}
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      </p>
+    </figcaption>
+  </figure>
+</a>

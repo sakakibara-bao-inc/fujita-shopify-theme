@@ -8,347 +8,109 @@
   </div>
 
 
-  <!-- l-container -->
-  <section class="top-product__list l-container l-section-gap">
-    <div class="c-card-list c-card-list--grid c-card-list--cols-3">
-      <header class="c-card-list__header c-card-list__header--overlap-next">
-        <div class="c-card-list__title">
-          <h3 class="c-category-title" data-english-title="COFFEE">
-            <span>コーヒーにまつわるもの</span>
-          </h3>
-        </div>
-        <!-- <p class="c-card-list__description">店主が関わったもの、繋がりのある方が手がけたもの、香川・瀬戸内にゆかりがあるものを集めた、とある民家の裏庭にある個人的アンテナショップ。このテキストはダミーです</p> -->
-        <div class="c-card-list__link c-card-list__link--header">
-          <a href="/fujita/shop/" class="c-link c-link--arrow">VIEW ALL
+  {% for link in menus['shop-nav-primary'].links %}
+    {% assign nav_collection = link.object %}
+
+    <!-- l-container -->
+    <section class="top-product__list l-container l-section-gap">
+      <div class="c-card-list c-card-list--grid c-card-list--cols-3">
+
+        {% assign is_even = forloop.index | modulo: 2 %}
+        <header class="c-card-list__header{% if is_even == 0 %} c-card-list__header--flip{% endif %} c-card-list__header--overlap-next">
+          <div class="c-card-list__title">
+            <h3 class="c-category-title" data-english-title="{{ nav_collection.metafields.custom.en_title }}">
+              <span>{{ link.title }}</span>
+            </h3>
+          </div>
+          <div class="c-card-list__link c-card-list__link--header">
+            <a href="{{ link.url }}" class="c-link c-link--arrow">VIEW ALL
+              <span class="c-icon c-icon--arrow-long-right"><svg aria-hidden="true"><use href="#icon-arrow-long-right"></use></svg></span>
+            </a>
+          </div>
+        </header>
+
+        <ul class="c-card-list__list">
+          {% for product in nav_collection.products limit: 8 %}
+            <li class="c-card-list__item">
+              {% render 'product-card', product: product %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="c-card-list__link c-card-list__link--bottom">
+          <a href="{{ link.url }}" class="c-link c-link--arrow">VIEW ALL
             <span class="c-icon c-icon--arrow-long-right"><svg aria-hidden="true"><use href="#icon-arrow-long-right"></use></svg></span>
           </a>
         </div>
-      </header>
-
-      <ul class="c-card-list__list">
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-      <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥32,000〜¥48,000</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥120,000</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-      <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-      </ul>
-
-      <div class="c-card-list__link c-card-list__link--bottom">
-        <a href="/fujita/shop/" class="c-link c-link--arrow">VIEW ALL
-          <span class="c-icon c-icon--arrow-long-right"><svg aria-hidden="true"><use href="#icon-arrow-long-right"></use></svg></span>
-        </a>
       </div>
-    </div>
-  </section>
-  <!-- // l-container -->
-
-
-  <!-- l-container -->
-  <section class="top-product__list l-container l-section-gap">
-    <div class="c-card-list c-card-list--grid c-card-list--cols-3">
-      <header class="c-card-list__header c-card-list__header--flip c-card-list__header--overlap-next">
-        <div class="c-card-list__title">
-          <h3 class="c-category-title" data-english-title="SETOUCHI">
-            <span>瀬戸内にまつわるもの</span>
-          </h3>
-        </div>
-        <!-- <p class="c-card-list__description">店主が関わったもの、繋がりのある方が手がけたもの、香川・瀬戸内にゆかりがあるものを集めた、とある民家の裏庭にある個人的アンテナショップ。このテキストはダミーです</p> -->
-        <div class="c-card-list__link c-card-list__link--header">
-          <a href="/fujita/shop/" class="c-link c-link--arrow">VIEW ALL
-            <span class="c-icon c-icon--arrow-long-right"><svg aria-hidden="true"><use href="#icon-arrow-long-right"></use></svg></span>
-          </a>
-        </div>
-      </header>
-
-      <ul class="c-card-list__list">
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥32,000〜¥48,000</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥120,000</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-
-        <li class="c-card-list__item">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-      </ul>
-
-      <div class="c-card-list__link c-card-list__link--bottom">
-        <a href="/fujita/shop/" class="c-link c-link--arrow">VIEW ALL
-          <span class="c-icon c-icon--arrow-long-right"><svg aria-hidden="true"><use href="#icon-arrow-long-right"></use></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- // l-container -->
+    </section>
+    <!-- // l-container -->
+  {% endfor %}
 
 
   <div class="l-separator l-section-gap"><span></span></div>
 
 
-  <section class="c-card-list c-card-list--slider c-card-list--slider-sm l-section-gap">
-    <div class="c-card-list__title c-card-list__title--has-badge">
-      <!-- バッジ -->
-      <span class="c-badge-circle c-badge-circle--recommend">
-        <svg viewBox="0 0 100 100" focusable="false" aria-hidden="true">
-          <defs>
-            <path id="c-badge-circle-path-recommend" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
-          </defs>
-          <text class="c-badge-circle__text">
-            <textPath href="#c-badge-circle-path-recommend" startOffset="50%" text-anchor="middle">RECOMMEND ! RECOMMEND ! RECOMMEND ! RECOMMEND ! </textPath>
-          </text>
-        </svg>
+  {%- comment -%}
+    toppage-recommend コレクションの商品を表示。
+    6件未満の場合は collections.all から不足分を補填。
+    同じ商品が2回表示されないように、出力済み商品の handle を記録して判定する。
+  {%- endcomment -%}
+  {% assign recommend_collection = collections['toppage-recommend'] %}
 
-        <h3 class="c-badge-circle__label">おすすめ<br>商品</h3>
-      </span>
-      <!-- // バッジ -->
-    </div>
+  {% if recommend_collection != blank and recommend_collection.products_count > 0 %}
+    {% assign displayed_count = 0 %}
+    {% assign displayed_handles = '' %}
 
-    <div class="swiper">
-      <ul class="c-card-list__list swiper-wrapper">
+    <section class="c-card-list c-card-list--slider c-card-list--slider-sm l-section-gap">
+      <div class="c-card-list__title c-card-list__title--has-badge">
+        <span class="c-badge-circle c-badge-circle--recommend">
+          <svg viewBox="0 0 100 100" focusable="false" aria-hidden="true">
+            <defs>
+              <path id="c-badge-circle-path-recommend" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
+            </defs>
+            <text class="c-badge-circle__text">
+              <textPath href="#c-badge-circle-path-recommend" startOffset="50%" text-anchor="middle">RECOMMEND ! RECOMMEND ! RECOMMEND ! RECOMMEND ! </textPath>
+            </text>
+          </svg>
 
-        <!-- 1枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">1 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
+          <h3 class="c-badge-circle__label">おすすめ<br>商品</h3>
+        </span>
+      </div>
 
-        <!-- 2枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">2 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
+      <div class="swiper">
+        <ul class="c-card-list__list swiper-wrapper">
+          {% for product in recommend_collection.products limit: 8 %}
+            <li class="c-card-list__item swiper-slide">
+              {% render 'product-card', product: product %}
+            </li>
 
-        <!-- 3枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">3 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
+            {% assign displayed_count = displayed_count | plus: 1 %}
+            {% assign displayed_handles = displayed_handles | append: product.handle | append: ',' %}
+          {% endfor %}
 
-        <!-- 4枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">4 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
+          {% if displayed_count < 6 %}
+            {% for product in collections.all.products %}
+              {% if displayed_count >= 6 %}
+                {% break %}
+              {% endif %}
 
-        <!-- 5枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">5 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
+              {% if displayed_handles contains product.handle %}
+                {% continue %}
+              {% endif %}
 
-        <!-- 6枚目 -->
-        <li class="c-card-list__item swiper-slide">
-          <a href="/fujita/shop/item.html" class="c-product-card">
-            <figure>
-              <span class="c-product-card__image c-hover-image--frame">
-                <img src="/fujita/assets/images/sample-img02.jpg" alt="Cinamon Roast（浅煎り）" loading="lazy" >
-              </span>
-              <figcaption class="c-product-card__body">
-                <h4 class="c-product-card__name">6 Cinamon Roast（浅煎り）</h4>
-                <p class="c-product-card__price">¥1,000〜¥2,700</p>
-              </figcaption>
-            </figure>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+              <li class="c-card-list__item swiper-slide">
+                {% render 'product-card', product: product %}
+              </li>
+
+              {% assign displayed_count = displayed_count | plus: 1 %}
+              {% assign displayed_handles = displayed_handles | append: product.handle | append: ',' %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+
 </section>
 <!-- // top-product -->
