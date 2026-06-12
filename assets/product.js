@@ -1,6 +1,5 @@
 /**
  * 商品詳細ページのフォームまわり初期化
- * - サイズの label / アイコンクリックで select を開く
  * - 数量の +/- ボタンで number を増減
  */
 export function initProductControls() {
@@ -8,51 +7,11 @@ export function initProductControls() {
   const controlBlocks = document.querySelectorAll('.product-article__controls');
 
   controlBlocks.forEach((block) => {
-    setupSizeControl(block);
     setupQuantityControl(block);
+    setupProductOptionImageSlider(block);
   });
 }
 
-/**
- * サイズ選択の制御
- * - .c-control--size 内の label / アイコンクリックで select を開く
- */
-function setupSizeControl(block) {
-  const control = block.querySelector('.c-control--size');
-  if (!control) return;
-
-  const label  = control.querySelector('.c-control__label');
-  const icon   = control.querySelector('.c-control__field-icon');
-  const select = control.querySelector('select');
-
-  if (!select) return;
-
-  const openSelect = () => {
-    select.focus();
-
-    // 対応しているブラウザならネイティブのピッカーを開く
-    if (typeof select.showPicker === 'function') {
-      select.showPicker();
-    } else {
-      // 一部ブラウザ向けフォールバック（効かないブラウザもある）
-      select.click();
-    }
-  };
-
-  if (label) {
-    label.addEventListener('click', (event) => {
-      event.preventDefault(); // デフォルトのフォーカスだけにしない
-      openSelect();
-    });
-  }
-
-  if (icon) {
-    icon.addEventListener('click', (event) => {
-      event.preventDefault();
-      openSelect();
-    });
-  }
-}
 
 /**
  * 数量コントロール
@@ -60,14 +19,15 @@ function setupSizeControl(block) {
  * - +/- ボタンで値を増減
  */
 function setupQuantityControl(block) {
-  const control  = block.querySelector('.c-control--quantity');
+  const control  = block.querySelector('.c-product-quantity');
   if (!control) return;
 
-  const label    = control.querySelector('.c-control__label');
+  const label    = control.querySelector('.c-product-quantity__label');
   const input    = control.querySelector('input[type="number"]');
-  const btnMinus = control.querySelector('.c-control__field-button--minus');
-  const btnPlus  = control.querySelector('.c-control__field-button--plus');
+  const btnMinus = control.querySelector('.c-product-quantity__button--minus');
+  const btnPlus  = control.querySelector('.c-product-quantity__button--plus');
 
+  
   if (!input) return;
 
   const min = input.min !== '' ? Number(input.min) : null;
@@ -123,4 +83,35 @@ function setupQuantityControl(block) {
       input.focus();
     });
   }
+}
+
+
+/**
+ * 商品オプションと商品画像を連動
+ * - オプション選択時に対応画像へスライド
+ * - data-image-id がないオプションは無視
+ */
+function setupProductOptionImageSlider(block) {
+  const form = block.querySelector('[data-product-form]');
+  if (!form) return;
+
+  const article = block.closest('.product-article');
+  const gallery = article.querySelector('.c-image-strip--shop-item.swiper');
+  const swiper = gallery.swiperInstance;
+  const slides = Array.from(gallery.querySelectorAll('.swiper-slide'));
+
+  form.querySelectorAll('[data-product-option]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const imageId = input.dataset.imageId;
+      if (!imageId) return;
+
+      const targetIndex = slides.findIndex((slide) => {
+        return slide.dataset.imageId === imageId;
+      });
+
+      if (targetIndex !== -1) {
+        swiper.slideTo(targetIndex);
+      }
+    });
+  });
 }

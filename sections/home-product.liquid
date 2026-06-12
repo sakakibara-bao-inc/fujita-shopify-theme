@@ -2,7 +2,7 @@
 <section class="top-product" aria-labelledby="top-product-title">
   <h2 id="top-product-title" class="u-visually-hidden">オンラインショップ</h2>
 
-  <div class="top-product__hero l-section-gap">
+  <div class="top-product__hero l-section-gap--sm" style="--bg-image:url('./sample-img02.jpg');">
     <div class="c-logo c-logo--white"><span class="u-visually-hidden">地域に出会う商店 ふじたしょうてん</span></div>
     <p>ふじたしょうてん</p>
   </div>
@@ -78,27 +78,10 @@
         </span>
       </div>
 
-      <div class="swiper">
-        <ul class="c-card-list__list swiper-wrapper">
-          {% for product in recommend_collection.products limit: 8 %}
-            <li class="c-card-list__item swiper-slide">
-              {% render 'product-card', product: product %}
-            </li>
-
-            {% assign displayed_count = displayed_count | plus: 1 %}
-            {% assign displayed_handles = displayed_handles | append: product.handle | append: ',' %}
-          {% endfor %}
-
-          {% if displayed_count < 6 %}
-            {% for product in collections.all.products %}
-              {% if displayed_count >= 6 %}
-                {% break %}
-              {% endif %}
-
-              {% if displayed_handles contains product.handle %}
-                {% continue %}
-              {% endif %}
-
+      <div class="c-slider">
+        <div class="swiper">
+          <ul class="c-card-list__list swiper-wrapper">
+            {% for product in recommend_collection.products limit: 8 %}
               <li class="c-card-list__item swiper-slide">
                 {% render 'product-card', product: product %}
               </li>
@@ -106,8 +89,40 @@
               {% assign displayed_count = displayed_count | plus: 1 %}
               {% assign displayed_handles = displayed_handles | append: product.handle | append: ',' %}
             {% endfor %}
-          {% endif %}
-        </ul>
+
+            {% if displayed_count < 6 %}
+              {% for product in collections.all.products %}
+                {% if displayed_count >= 6 %}
+                  {% break %}
+                {% endif %}
+
+                {% if displayed_handles contains product.handle %}
+                  {% continue %}
+                {% endif %}
+
+                <li class="c-card-list__item swiper-slide">
+                  {% render 'product-card', product: product %}
+                </li>
+
+                {% assign displayed_count = displayed_count | plus: 1 %}
+                {% assign displayed_handles = displayed_handles | append: product.handle | append: ',' %}
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="c-slider__controls l-container">
+          <button class="c-slider__button c-slider__button--prev" type="button" aria-label="前の画像" >
+            <span class="c-icon c-icon--chevron-right">
+              <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+            </span>
+          </button>
+          <button class="c-slider__button c-slider__button--next" type="button" aria-label="次の画像" >
+            <span class="c-icon c-icon--chevron-right">
+              <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+            </span>
+          </button>
+        </div>
       </div>
     </section>
   {% endif %}

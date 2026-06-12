@@ -22,12 +22,15 @@ export function initCardListSliders() {
   if (typeof Swiper === 'undefined') return;
 
   const sliderEls = document.querySelectorAll('.c-card-list--slider .swiper');
-  if (!sliderEls.length) return;
 
   sliderEls.forEach((swiperEl) => {
     const root = swiperEl.closest('.c-card-list--slider');
     const isSliderSm = root && root.classList.contains('c-card-list--slider-sm');
     const isSliderAutoPlay = root && root.classList.contains('c-card-list--slider-autoplay');
+
+    const sliderEl = swiperEl.closest('.c-slider');
+    const prevEl = sliderEl.querySelector('.c-slider__button--prev');
+    const nextEl = sliderEl.querySelector('.c-slider__button--next');
 
     const swiper = new Swiper(swiperEl, {
       //slidesPerView: isSliderSm ? 5 : 4,
@@ -35,6 +38,11 @@ export function initCardListSliders() {
       loop: true,
       watchSlidesProgress: true,
       speed: 500,
+
+      navigation: {
+        prevEl,
+        nextEl,
+      },
 
       breakpoints: {
         0: { //sm
@@ -79,30 +87,59 @@ export function initCardListSliders() {
   });
 }
 
+
+/**
+ * 商品詳細メイン画像スライダー初期化
+ */
+export function initProductImageSliders() {
+  if (typeof Swiper === 'undefined') return;
+
+  const sliderEls = document.querySelectorAll('.c-image-strip--shop-item.swiper');
+  if (!sliderEls.length) return;
+
+  sliderEls.forEach((swiperEl) => {
+    const sliderEl = swiperEl.closest('.c-slider');
+    const prevEl = sliderEl.querySelector('.c-slider__button--prev');
+    const nextEl = sliderEl.querySelector('.c-slider__button--next');
+
+    const swiper = new Swiper(swiperEl, {
+      slidesPerView: 'auto',
+      spaceBetween: 0,
+      loop: false,
+      speed: 500,
+      allowTouchMove: true,
+
+      navigation: {
+        prevEl,
+        nextEl,
+      },
+    });
+
+    swiperEl.swiperInstance = swiper;
+  });
+}
+
+
 /**
  * 横に流れ続けるギャラリー（帯画像）初期化
  */
-export function initGallerySliders() {
+export function initImageStripGallerySliders() {
   if (typeof Swiper === 'undefined') return;
 
-  const galleryEls = document.querySelectorAll('.c-image-strip.swiper');
+  const galleryEls = document.querySelectorAll('.c-image-strip--gallery.swiper');
   if (!galleryEls.length) return;
 
   galleryEls.forEach((galleryEl) => {
-    const isGallery = galleryEl.classList.contains('c-image-strip--gallery');
-    
-    const gallerySwiper = new Swiper(galleryEl, {
+    new Swiper(galleryEl, {
       slidesPerView: 'auto',
       spaceBetween: 0,
-      loop: isGallery,
-      speed: isGallery ? 40000 : 500,
-      allowTouchMove: !isGallery,
-      autoplay: isGallery
-        ? {
-            delay: 0,
-            disableOnInteraction: false,
-          }
-        : false,
+      loop: true,
+      speed: 40000,
+      allowTouchMove: false,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
     });
   });
 }

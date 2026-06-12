@@ -1,6 +1,6 @@
 import { initResizeWatcher } from './utils.js';
 import { initHeader } from './header.js';
-import { initCardListSliders, initGallerySliders } from './slider.js';
+import { initCardListSliders, initProductImageSliders, initImageStripGallerySliders } from './slider.js';
 import { initProductControls } from './product.js';
 
 
@@ -29,7 +29,8 @@ window.addEventListener('load', () => {
 
   //　swiper系コンポーネントの初期化
   initCardListSliders();
-  initGallerySliders();
+  initProductImageSliders();
+  initImageStripGallerySliders();
 
   if ( document.querySelector('.product-article') ) {
     initProductControls();
