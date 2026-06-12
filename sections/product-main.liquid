@@ -1,0 +1,200 @@
+
+  <article class="product-article l-section-gap--after-header-at-sm">
+    <div class="product-article__hero c-slider">
+      <div class="c-image-strip c-image-strip--shop-item swiper">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <div class="c-image-strip__item swiper-slide">
+                {{ media | image_url: width: 1200 | image_tag: alt: media.alt }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="c-slider__controls l-container">
+        <button class="c-slider__button c-slider__button--prev" type="button" aria-label="前の画像">
+          <span class="c-icon c-icon--chevron-right">
+            <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+          </span>
+        </button>
+
+        <button class="c-slider__button c-slider__button--next" type="button" aria-label="次の画像">
+          <span class="c-icon c-icon--chevron-right">
+            <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+      
+    <!-- l-container -->
+    <header class="product-article__header l-container _l-section-gap--xs">
+      <div class="product-article__head">
+        <p class="product-article__brand">三洋産業</p>
+        <h1 class="product-article__title">CAFEC アバカ円錐ペーパーフィルター</h1>
+        <p class="product-article__price">
+          <span class="product-article__price-main"><span>¥</span>5,000<i>〜</i><span>¥</span>20,000</span>
+          <span class="product-article__price-tax">（税込）</span>
+        </p>
+      </div>
+
+      <div class="product-article__description">
+        <p>アバカパルプを使用した、環境にもやさしい円錐型ペーパーフィルターです。1cup／4cup に対応し、すっきりとした味わいとクリアな後味を引き出します。<br>100枚入り<br>Made in Japan</p>
+      </div>
+
+      <div class="product-article__controls">
+        <form action="/cart/add" method="post" data-product-form>
+          <input type="hidden" name="id" value="" data-variant-id>
+
+          <fieldset class="c-product-option">
+            <legend class="c-product-option__label">サイズ</legend>
+
+            <div class="c-product-option__list">
+              <label class="c-product-option__item">
+                <input type="radio" name="options[サイズ]" value="1cup" data-product-option checked>
+                <span>1cup</span>
+              </label>
+
+              <label class="c-product-option__item">
+                <input type="radio" name="options[サイズ]" value="2cup" data-product-option>
+                <span>2cup</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="c-product-option">
+            <legend class="c-product-option__label">色</legend>
+
+            <div class="c-product-option__list">
+              <label class="c-product-option__item">
+                <input type="radio" name="options[色]" value="白" data-product-option data-image-id="image-white" checked>
+                <span>白</span>
+              </label>
+
+              <label class="c-product-option__item">
+                <input type="radio" name="options[色]" value="黒" data-product-option data-image-id="image-black">
+                <span>黒</span>
+              </label>
+
+              <label class="c-product-option__item">
+                <input type="radio" name="options[色]" value="生成り" data-product-option data-image-id="image-natural">
+                <span>生成り</span>
+              </label>
+              
+            </div>
+          </fieldset>
+
+          <div class="c-product-quantity">
+            <label class="c-product-quantity__label" for="product-qty">数量</label>
+
+            <div class="c-product-quantity__field">
+              <button type="button" class="c-product-quantity__button c-product-quantity__button--minus" aria-label="数量を1減らす">–</button>
+              <input id="product-qty" type="number" name="quantity" value="1" min="1" inputmode="numeric" required>
+              <button type="button" class="c-product-quantity__button c-product-quantity__button--plus" aria-label="数量を1増やす">＋</button>
+            </div>
+          </div>
+
+
+          <div class="product-article__cart-button">
+            <button type="submit" class="c-button c-button--primary">
+              カートに入れる
+              <span class="c-icon c-icon--chevron-right">
+                <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+              </span>
+            </button>
+          </div>
+        </form>
+
+        <!-- 問い合わせ -->
+        <p class="product-article__contact-link"><a href="#" target="_blank">
+          <span class="c-icon"><svg aria-hidden="true"><use href="#icon-mail"></use></svg></span>
+          この商品について問合わせる
+        </a></p>
+      </div>
+    </header>
+    <!-- // l-container -->
+
+
+    <div class="l-separator l-section-gap--sm"><span></span></div>
+
+
+    <!-- l-container -->
+    <div class="product-article__body l-container l-section-gap--sm">
+      <div class="c-article l-readable">
+        <p><img src="/fujita/assets/sample-img02.jpg" alt="" class="alignnone" loading="lazy"></p>
+
+        <p>ダミーテキスト。<em>ZINE MART</em>では、先日投稿した「ペーパーフィルターのおうち展」でお披露目予定のペーパーフィルターの居場所/寝どこが完成するまでの試作の様子を綴ったZINE「シサクのキロク」と。</p>
+        
+        <p>ダミーテキスト<a href="#">こちら</a>。</p>
+    
+        <p><img src="/fujita/assets/sample-img02.jpg" alt="" class="alignnone" loading="lazy"></p>
+
+        <p>その他にもなかなかに魅力的な出店者のみなさまが揃っております！<br>
+        ZINEと本、あれこれ雑貨と美味しい物を揃うマーケット明日は、ZINE MARTでお待ちしております！</p>
+    
+        <h2 class="c-article__heading">2/16（日）ZINE MART開催！</h2>
+
+        <p>ZINEと本、あれこれ雑貨と美味しい物を楽しむマーケット「ZINE MART」を開催します！</p>
+        <p>『ZINE（ジン）』という言葉を耳にしたことはありますか？」<br>
+        ZINEとは個人やグループが自主的に、自由な手法、テーマで制作する小冊子のことを指します。今回のZINE MARTに参加するのは総勢20組の個性豊かな面々。日記や作品集、建築写真、家族の記録、日々自分が考えたアレコレをまとめた一冊や、自身の偏愛について熱く語る一冊まで。参加店舗が手がけた、さまざまなZINEが並びます。一般の書籍にはないZINEならではの面白さに遭遇するマーケットを、ぜひお楽しみください！</p>
+    
+        <div id="attachment_24" style="width: 1690px" class="wp-caption aligncenter" loading="lazy">
+          <img src="/fujita/assets/sample-img02.jpg" alt="">
+          <p class="wp-caption-text">キャプションを設定するとここに文字が表示されます</p>
+        </div>
+
+        <h2 class="c-article__heading">出店者一覧（会場1 : 城南コミュニティセンター城南コミュニティセンター）</h2>
+    
+        <p>mooi（ZINE、書籍）<br>
+        ふじたしょうてん・ツクシサン（ZINE、雑貨）<a href="#">@fujitasyouten_</a> <a href="#">@_tsukushi_san_</a><br>
+        かなくま餅11号線（大福） <a href="#">@kanakumamoti11</a><br>
+        39の本屋さん（ZINE、 書籍）<br>
+        木庸社（ZINE、 書籍）<br>
+        どろん堂（ZINE、毛糸小物） <a href="#">@mudcable</a><br>
+        だがしやじゅんぱち（駄菓子 駄菓子、駄玩具） <a href="#">@dagashiya108</a><br>
+        BOOK遍路をつくる会（ZINE、フリペ） <a href="#">@book_henro</a><br>
+        Suns book（ZINE、書籍、ポストカード） <a href="#">@na2kyy</a><br>
+        She Sea See Books（ZINE、ポストカード、書籍） <a href="#">@_ee37o</a><br>
+        新名書店（ZINE）</p>
+    
+        <p><img src="/fujita/assets/sample-img02.jpg" alt="" class="alignnone" loading="lazy"></p>
+        <p><img src="/fujita/assets/sample-img02.jpg" alt="" class="alignleft" loading="lazy"></p>
+        <p><img src="/fujita/assets/sample-img02.jpg" alt="" class="alignright" loading="lazy"></p>
+    
+        <p>開催日時：2/16(日)12:00〜16:00<br>
+        会　場　：城南コミュニティセンター(香川県丸亀市山北町200-1)<br>
+        会　場２：城南書店街（カレーとコーヒー、ショーテンシュ達が選んだ本）</p>
+
+        <p>＜注意事項＞<br>
+        ・会場１でのお支払いは基本現金となります。なるべくお釣りがでないように小銭を持ってきてください。
+        ・ショッピングバッグのご用意はありませんので、エコバッグ等をご持参ください。<br>
+        ・それぞれの会場の駐車場の台数には限りがあります。お近くの方は徒歩や自転車でお越しください。車でご来場の方はなるべく乗り合わせてお越しください。</p>
+      </div>
+    </div>
+    <!-- // l-container -->
+
+
+    <!-- l-container -->
+    <div class="product-article__category l-container l-section-gap--xs">
+      <ul class="c-tag-list c-tag-list--button c-tag-list--center">
+        <li><a href="/fujita/journal/">コーヒーのこと</a></li>
+        <li><a href="/fujita/journal/">お知らせ</a></li>
+      </ul>
+    </div>
+    <!-- // l-container -->
+  </article>
+
+
+
+  <!-- l-container -->
+  <nav class="c-article-nav l-container l-section-gap" aria-label="商品詳細ナビゲーション">
+    <div class="c-article-nav__back"><a href="/fujita/shop/" class="c-button">
+      BACK
+      <span class="c-icon c-icon--chevron-right">
+        <svg aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+      </span>
+    </a></div>
+  </nav>
+  <!-- // l-container -->
